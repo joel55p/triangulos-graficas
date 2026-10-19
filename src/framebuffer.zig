@@ -1,5 +1,7 @@
 const rl = @import("raylib");
 
+const color_fondo = rl.Color.white;
+
 //buffer de pixeles, imagen en memoria donde se dibuja cada pixel
 pub const Framebuffer = struct {
     ancho: usize,
@@ -11,7 +13,7 @@ pub const Framebuffer = struct {
         return .{
             .ancho = w,
             .alto = h,
-            .imagen = rl.genImageColor(@intCast(w), @intCast(h), .black),
+            .imagen = rl.genImageColor(@intCast(w), @intCast(h), color_fondo),
         };
     }
 
@@ -21,7 +23,7 @@ pub const Framebuffer = struct {
     }
 
     pub fn limpiar(self: *Framebuffer) void { //pone todo en black
-        self.imagen.clearBackground(.black);
+        self.imagen.clearBackground(color_fondo);
     }
 
     //guarda el framebuffer como png
